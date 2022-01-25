@@ -1,0 +1,24 @@
+
+<div class="p-3">
+
+
+
+    <h2>Test Webhooks</h2>
+    <p> < ! -- TODO: Disable in production --> </p>
+    <% flash.each do |type, msg| %>
+        <div class="alert alert-danger" role="alert">
+            <%= msg %>
+        </div>
+    <% end %>
+    <%= form_with url:"/webhooks/test" do |form| %>
+        <div>
+            <%= form.label :URL %><br>
+            <%= form.text_field :URL %>
+        </div>
+
+        <div>
+            <%= form.submit "Test" %>
+        </div>
+    <% end %>
+
+</div>

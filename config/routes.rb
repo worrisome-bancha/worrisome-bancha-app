@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "/lists/new", to: "lists#create"
   post "/lists/:id/new", to: "lists#create_entry", as: 'create_entry'
   get "/api/v1/lists/:id", to: "api/v1/lists#get_list"
-  get "/webhooks", to: "lists#webhooks"
+  get "/webhooks", to: "lists#webhook_index", as: 'webhook_index'
+  post "/webhooks/test", to: "lists#test_webhook", as: 'test_webhook'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

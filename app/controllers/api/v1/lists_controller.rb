@@ -6,7 +6,7 @@ class Api::V1::ListsController < ApplicationController
 
     def get_list
         @list = List.find(params[:id])
-        render json: @list, status: 200
+        render json: {list: @list, flag:ENV['FLAG']}, status: 200
     end
     
     private 

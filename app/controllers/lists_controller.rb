@@ -43,6 +43,17 @@ class ListsController < ApplicationController
   end
 
 
-  def api_get
-    
+  def webhook_index
+  end
+
+  def test_webhook
+
+    uri = URI(params[:URL])
+    res = Net::HTTP.get_response(uri)
+    puts res
+    @response = res.body
+    respond_to do |format|
+      format.html { redirect_to webhook_index_path(), notice: "Response: " + @response }
+    end
+  end
 end
