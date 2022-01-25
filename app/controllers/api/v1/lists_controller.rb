@@ -8,11 +8,11 @@ class Api::V1::ListsController < ApplicationController
         @list = List.find(params[:id])
         render json: @list, status: 200
     end
-
+    
     private 
 
     def check_api_token
-        if params[:api_token] != "3e3d9e38-7dfb-11ec-b847-5f7ac02782ba"
+        if params[:api_token] != ENV['API_TOKEN']
             render json: {error: 'Invalid API token'}, status: 401
         end
     end
