@@ -1,0 +1,29 @@
+<div class="p-3">
+    <div class="card p-3">
+        
+        <div class="card-body">
+            <h5 class="card-title">All of your lists!</h5>
+            <ul class="card-text list-group">
+                <% @lists.each do |list| %>
+                    <li class="list-group-item">
+                        <a href="/lists/<%= list.id %>">
+                            <%= list.name %>
+                        </a>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+    <h2>Create a new list</h2>
+    <%= form_with model: @list, url: "/lists/new" do |form| %>
+    <div>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+    <% end %>
+</div>
+
