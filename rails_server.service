@@ -1,0 +1,15 @@
+[Unit]
+Description=Rails Server
+Requires=network.target
+
+[Service]
+Type=simple
+User=worrisomebancha
+WorkingDirectory=/home/worrisomebancha/worrisome-bancha
+ExecStart=/usr/bin/bash -lc 'bin/rails s -e production'
+TimeoutSec=30
+RestartSec=15s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

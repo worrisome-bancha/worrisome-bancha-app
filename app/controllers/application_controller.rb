@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
             cookies[:uid] = {
                 value: SecureRandom.uuid,
                 expires: 1.year.from_now,
-                secure: true,
                 httponly: true,
               }
         end
