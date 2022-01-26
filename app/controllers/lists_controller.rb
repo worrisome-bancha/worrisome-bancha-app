@@ -4,10 +4,7 @@ class ListsController < ApplicationController
     @list = List.new
   end
 
-
-  
   def create
-
     @list = List.new(name: params[:list][:name], uid: cookies[:uid])
 
     if @list.save
@@ -19,20 +16,17 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    if @list.uid != cookies[:uid]
-      raise ActionController::RoutingError, 'Not Found'
-    end
+    raise ActionController::RoutingError, 'Not Found' if @list.uid != cookies[:uid]
+
     @list_entries = @list.ListEntries
     @list_entry = ListEntry.new
   end
 
   def create_entry
     @list = List.find(params[:id])
-    if @list.uid != cookies[:uid]
-      raise ActionController::RoutingError, 'Not Found'
-    end
+    raise ActionController::RoutingError, 'Not Found' if @list.uid != cookies[:uid]
 
-    @list_entry = ListEntry.new(description: params[:list_entry][:description], list:@list)
+    @list_entry = ListEntry.new(description: params[:list_entry][:description], list: @list)
 
     if @list_entry.save
       redirect_back(fallback_location: root_path)
@@ -42,18 +36,15 @@ class ListsController < ApplicationController
     end
   end
 
-
-  def webhook_index
-  end
+  def webhook_index; end
 
   def test_webhook
-
     uri = URI(params[:URL])
     res = Net::HTTP.get_response(uri)
     puts res
     @response = res.body
     respond_to do |format|
-      format.html { redirect_to webhook_index_path(), notice: "Response: " + @response }
+      format.html { redirect_to webhook_index_path, notice: 'Response: ' + @response }
     end
   end
 end

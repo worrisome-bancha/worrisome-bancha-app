@@ -1,15 +1,15 @@
 class ApplicationController < ActionController::Base
-    before_action :ensure_anonymous_cookie
+  before_action :ensure_anonymous_cookie
 
-    private
+  private
 
-    def ensure_anonymous_cookie
-        if !cookies[:uid]
-            cookies[:uid] = {
-                value: SecureRandom.uuid,
-                expires: 1.year.from_now,
-                httponly: true,
-              }
-        end
+  def ensure_anonymous_cookie
+    unless cookies[:uid]
+      cookies[:uid] = {
+        value: SecureRandom.uuid,
+        expires: 1.year.from_now,
+        httponly: true
+      }
     end
+  end
 end
