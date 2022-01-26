@@ -10,22 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_211146) do
-
-  create_table "list_entries", force: :cascade do |t|
-    t.string "description"
-    t.integer "list_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["list_id"], name: "index_list_entries_on_list_id"
+ActiveRecord::Schema.define(version: 20_220_124_211_146) do
+  create_table 'list_entries', force: :cascade do |t|
+    t.string 'description'
+    t.integer 'list_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['list_id'], name: 'index_list_entries_on_list_id'
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "uid"
+  create_table 'lists', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'uid'
   end
 
-  add_foreign_key "list_entries", "lists"
+  add_foreign_key 'list_entries', 'lists'
 end
